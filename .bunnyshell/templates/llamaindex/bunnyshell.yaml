@@ -1,0 +1,5 @@
+# Bunnyshell YAML Configuration
+kind: Environment
+name: llamaindex
+type: primary
+# Add your configuration here
