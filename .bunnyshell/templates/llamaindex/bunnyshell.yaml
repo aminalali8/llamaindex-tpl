@@ -25,7 +25,7 @@ environmentVariables:
 components:
   - kind: Application
     name: llamaindex-py
-    gitRepo: "https://github.com/aminalali8/llamaindex-py-tpl.git"
+    gitRepo: "https://github.com/aminalali8/llamaindex-tpl.git"
     gitBranch: main
     gitApplicationPath: /
     dockerCompose:
