@@ -2,12 +2,12 @@
 name: llamaindex template
 description: Description goes here
 tags:
-    - bunnyshell
-icons: [ 'sample' ]
+  - bunnyshell
+icons: ["sample"]
 stack:
   packages:
     - name: Package name
-      version: 'Specify Version'
+      version: "1.0"
 discoverable: true
 categories:
-    - Add your category here
+  - Add your category here
