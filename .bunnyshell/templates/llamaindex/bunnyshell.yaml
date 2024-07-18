@@ -1,5 +1,45 @@
 # Bunnyshell YAML Configuration
 kind: Environment
-name: llamaindex
+name: langchain-py
 type: primary
+templateVariables:
+  CLOUD_PROVIDER_SDK: aws,gcp,azure,vertex
+  LLM_PROVIDER: openai,anthropic
+environmentVariables:
+  API_KEY: your_openai_api_key,your_anthropic_api_key
+
+  AWS_ACCESS_KEY_ID: your_aws_access_key_id
+  AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
+  AWS_SESSION_TOKEN: your_aws_session_token (optional)
+  AWS_DEFAULT_REGION: your_aws_default_region
+  AWS_PROFILE: your_aws_profile (optional)
+
+  GOOGLE_APPLICATION_CREDENTIALS: /path/to/your/google-cloud-key.json
+  GOOGLE_CLOUD_PROJECT: your_google_cloud_project_id
+
+  AZURE_SUBSCRIPTION_ID: your_azure_subscription_id
+  AZURE_CLIENT_ID: your_azure_client_id
+  AZURE_CLIENT_SECRET: your_azure_client_secret
+  AZURE_TENANT_ID: your_azure_tenant_id
+
+components:
+  - kind: Application
+    name: llamaindex-py
+    gitRepo: "https://github.com/aminalali8/llamaindex-py-tpl.git"
+    gitBranch: main
+    gitApplicationPath: /
+    dockerCompose:
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          - CLOUD_SDK={{template.vars.CLOUD_PROVIDER_SDK}}
+          - LLM_PROVIDER={{template.vars.LLM_PROVIDER}}
+          - API_KEY={{env.vars.API_KEY}}
+      ports:
+        - 8501:8501
+    hosts:
+      - hostname: "llamaindex-py-{{env.base_domain}}"
+        path: /
+        servicePort: 8501
 # Add your configuration here
